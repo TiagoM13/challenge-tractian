@@ -1,27 +1,32 @@
 import { HeaderContainer, UnitButton, UnitsContainer } from "./styled.ts"
 
 import LogoTractian from '../../../assets/LOGO TRACTIAN.png';
+import IconGold from "../../../assets/gold.png"
+
+import { Companie } from "../../interfaces/companie.ts";
 
 interface HeaderProps {
-  selectedUnit: string;
-  setSelectedUnit: (unit: string) => void;
+  companies?: Companie[];
+  selectedCompanie: Companie | null;
+  handleCompanieChange: (companie: Companie) => void;
 }
 
-export const Header = ({ selectedUnit, setSelectedUnit }: HeaderProps) => {
-  const units: string[] = ['Apex Unit', 'Tobias Unit', 'Jaguar Unit'];
-
+export const Header = ({ companies, selectedCompanie, handleCompanieChange }: HeaderProps) => {
   return (
     <HeaderContainer>
       <img src={LogoTractian} alt="Logo Tractian" loading="lazy" />
 
       <UnitsContainer>
-        {units.map((unit) => (
+        {companies?.map((companie) => (
           <UnitButton
-            key={unit}
-            isSelected={unit === selectedUnit}
-            onClick={() => setSelectedUnit(unit)}
+            key={companie.name}
+            isSelected={companie === selectedCompanie}
+            onClick={() => handleCompanieChange(companie)}
           >
-            {unit}
+            <img src={IconGold} alt="Icon Gold" loading="lazy" />
+            <span>
+              {companie.name} Unit
+            </span>
           </UnitButton>
         ))}
       </UnitsContainer>

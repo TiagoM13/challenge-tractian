@@ -1,7 +1,13 @@
-import { Page } from './app/pages'
+import { BrowserRouter } from 'react-router-dom'
+
+import { AssetView } from './app/pages/asset-view'
 
 function App() {
-  return <Page />
+  return (
+    <BrowserRouter>
+      <AssetView />
+    </BrowserRouter>
+  )
 }
 
 export default App
