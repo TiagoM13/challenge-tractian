@@ -13,13 +13,15 @@ export const UnitName = styled.h3`
 export const TreeItem = styled.div<{ level: number; selected?: boolean }>`
   padding-left: ${(props) => props.level * 20}px;
   margin: 5px 0;
-  background-color: ${(props) => (props.selected ? '#e7f5ff' : 'transparent')};
+  background-color: ${(props) => (props.selected ? 'var(--blue-900)' : 'transparent')};
+  color: ${(props) => (props.selected ? '#fff' : '#000')};
   display: flex;
   transition: all 0.5s ease-in;
 
   &:hover {
-    background-color: #e7f5ff;
+    background-color: ${(props) => (props.selected ? 'var(--blue-900)' : '#e7f5ff')};
     cursor: pointer;
+    color: ${(props) => (props.selected ? '#fff' : '#000')};
   }
 
   .content {

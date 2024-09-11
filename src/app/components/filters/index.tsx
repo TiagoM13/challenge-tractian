@@ -26,18 +26,18 @@ export const Filters = ({ companie, onFilterChange }: FilterProps) => {
       <div className="content-filters">
         <button
           type="button"
-          onClick={() => handleOnClick("energia")}
-          className={activeFilter === 'energia' ? 'active' : ''}
+          onClick={() => handleOnClick("energy")}
+          className={activeFilter === 'energy' ? 'active' : ''}
         >
-          <Lightning size={16} weight="bold" color={activeFilter === 'energia' ? '#fff' : "#2188FF"} />
+          <Lightning size={16} weight="bold" color={activeFilter === 'energy' ? '#fff' : "#2188FF"} />
           Sensor de Energia
         </button>
         <button
           type="button"
-          onClick={() => handleOnClick('critico')}
-          className={activeFilter === 'critico' ? 'active' : ''}
+          onClick={() => handleOnClick('alert')}
+          className={activeFilter === 'alert' ? 'active' : ''}
         >
-          <WarningCircle size={16} weight="bold" color={activeFilter === 'critico' ? '#fff' : "#2188FF"} />
+          <WarningCircle size={16} weight="bold" color={activeFilter === 'alert' ? '#fff' : "#2188FF"} />
           Crítico
         </button>
       </div>

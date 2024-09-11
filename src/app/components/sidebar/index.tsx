@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Circle, Lightning } from '@phosphor-icons/react';
 
 import { SearchInput } from '../search';
@@ -24,13 +24,21 @@ interface TreeNode {
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ locations, assets }) => {
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const tree = organizeTree(locations, assets);
+
+  const handleItemClick = (id: string) => {
+    setSelectedId(id);
+  };
 
   const renderTree = (nodes: Record<string, TreeNode>, level: number = 0) => {
     return Object.values(nodes).map((node) => (
       <div key={node.id}>
-        <TreeItem level={level}>
-          {/* {level && <span>{level}</span>} */}
+        <TreeItem
+          level={level}
+          selected={node.id === selectedId && node.type === 'component'}
+          onClick={() => handleItemClick(node.id)}
+        >
           <div className="content">
             <img src={getIcon(node.type)} alt={`${node.type} icon`} />
             <Label>

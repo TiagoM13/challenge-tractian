@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useCallback, useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { Asset } from "../../interfaces/asset";
 import { Companie } from "../../interfaces/companie";
@@ -16,14 +16,17 @@ import { Card, Container, Content } from "./styled";
 
 export const AssetView = () => {
   const [selectedCompanie, setSelectedCompanie] = useState<Companie | null>(null);
-  const [companies, setCompanies] = React.useState<Companie[]>([])
-  const [locations, setLocations] = React.useState<Location[]>([])
-  const [assets, setAssets] = React.useState<Asset[]>([])
+  const [companies, setCompanies] = useState<Companie[]>([]);
+  const [locations, setLocations] = useState<Location[]>([]);
+  const [assets, setAssets] = useState<Asset[]>([]);
   const [originalAssets, setOriginalAssets] = useState<Asset[]>([]);
   const [originalLocations, setOriginalLocations] = useState<Location[]>([]);
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const searchParams = React.useMemo(() => new URLSearchParams(location.search), [location.search]);
 
   const getRelevantLocations = React.useCallback((locationIds: Set<string>) => {
     const relevantLocations = new Set<string>();
@@ -54,10 +57,11 @@ export const AssetView = () => {
     );
 
     const filteredAssetIds = new Set(filterAssets.map(asset => asset.locationId));
+    const filteredLocationIds = new Set(filterLocations.map(location => location.id));
 
     const relevantLocations = getRelevantLocations(filteredAssetIds as Set<string>);
 
-    const allRelevantLocations = Array.from(new Set([...relevantLocations.map(loc => loc.id), ...filterLocations.map(loc => loc.id)]));
+    const allRelevantLocations = Array.from(new Set([...relevantLocations.map(loc => loc.id), ...filteredLocationIds]));
 
     setAssets(filterAssets);
     setLocations(originalLocations.filter(location => allRelevantLocations.includes(location.id)));
@@ -67,9 +71,9 @@ export const AssetView = () => {
     if (activeFilter) {
       let filteredAssets = [...originalAssets];
 
-      if (activeFilter === 'energia') {
+      if (activeFilter === 'energy') {
         filteredAssets = filteredAssets.filter(asset => asset.sensorType === 'energy');
-      } else if (activeFilter === 'critico') {
+      } else if (activeFilter === 'alert') {
         filteredAssets = filteredAssets.filter(asset => asset.sensorType !== null && asset.status === 'alert');
       }
 
@@ -84,47 +88,57 @@ export const AssetView = () => {
     }
   }, [activeFilter, getRelevantLocations, originalAssets, originalLocations]);
 
-  const handleGetAssetSelected = React.useCallback(async (id: string) => {
-    const response = await getAllAssets(id)
-    setAssets(response.assets)
-    setLocations(response.locations)
+  const handleGetAssetSelected = useCallback(async (id: string) => {
+    const response = await getAllAssets(id);
+    setAssets(response.assets);
+    setLocations(response.locations);
     setOriginalAssets(response.assets);
     setOriginalLocations(response.locations);
-  }, [])
+  }, []);
 
-  const handleCompanieChange = (companie: Companie) => {
+  const handleCompanieChange = useCallback((companie: Companie) => {
     setSelectedCompanie(companie);
-    handleGetAssetSelected(companie.id)
-  }
+    handleGetAssetSelected(companie.id);
 
-  React.useEffect(() => {
+    searchParams.set("companie", companie.id);
+    navigate({ search: searchParams.toString() });
+  }, [handleGetAssetSelected, navigate, searchParams]);
+
+  useEffect(() => {
     (async () => {
       const response = await getAllCompanies();
       setCompanies(response);
 
+      const companieId = searchParams.get("companie");
+
       if (response.length > 0) {
-        const firstCompany: Companie = response[0];
-        setSelectedCompanie(firstCompany);
-        handleGetAssetSelected(firstCompany.id)
+        if (companieId) {
+          const selected = response.find((companie: Companie) => companie.id === companieId);
+          if (selected) {
+            setSelectedCompanie(selected);
+            handleGetAssetSelected(selected.id);
+          }
+        } else {
+          const firstCompanie = response[0];
+          setSelectedCompanie(firstCompanie);
+          handleGetAssetSelected(firstCompanie.id);
+
+          searchParams.set("companie", firstCompanie.id);
+          navigate({ search: searchParams.toString() });
+        }
       }
-    })()
-  }, [handleGetAssetSelected])
+    })();
+  }, [handleGetAssetSelected, location.search, navigate, searchParams]);
 
-  React.useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
+  useEffect(() => {
     const query = searchParams.get("search") || "";
+    handleFilter(query);
+  }, [handleFilter, location.search, searchParams]);
 
-    if (query) {
-      handleFilter(query);
-    } else {
-      setAssets(originalAssets);
-      setLocations(originalLocations);
-    }
-  }, [handleFilter, originalAssets, originalLocations, location.search])
-
-  React.useEffect(() => {
+  useEffect(() => {
     applyFilters();
-  }, [activeFilter, applyFilters]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeFilter]);
 
   return (
     <Container>
@@ -141,5 +155,5 @@ export const AssetView = () => {
         </Content>
       </Card>
     </Container>
-  )
-}
+  );
+};
