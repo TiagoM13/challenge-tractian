@@ -1,12 +1,13 @@
 import React from 'react';
+import { Circle, Lightning } from '@phosphor-icons/react';
 
+import { SearchInput } from '../search';
 import { Asset } from '../../interfaces/asset';
 import { Location } from '../../interfaces/location';
 import { getIcon } from '../../utils/get-icon';
 import { organizeTree } from '../../utils/organizeTree';
 
-import { ContentSearch, Label, SidebarContainer, TreeItem } from './styled';
-import { Circle, Lightning, MagnifyingGlass } from '@phosphor-icons/react';
+import { Label, SidebarContainer, TreeItem } from './styled';
 
 interface SidebarProps {
   locations: Location[];
@@ -60,15 +61,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ locations, assets }) => {
 
   return (
     <SidebarContainer>
-      <ContentSearch>
-        <input
-          type="search"
-          name="assets"
-          id="asset"
-          placeholder="Buscar Ativo ou Local"
-        />
-        <MagnifyingGlass size={16} />
-      </ContentSearch>
+      <SearchInput />
 
       <div className="content-sidebar">
         {renderTree(tree)}

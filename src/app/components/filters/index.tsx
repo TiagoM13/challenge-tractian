@@ -5,13 +5,16 @@ import { Lightning, WarningCircle } from "@phosphor-icons/react";
 
 interface FilterProps {
   companie: Companie | null;
+  onFilterChange: (filter: string | null) => void;
 }
 
-export const Filters = ({ companie }: FilterProps) => {
+export const Filters = ({ companie, onFilterChange }: FilterProps) => {
   const [activeFilter, setActiveFilter] = React.useState<string | null>(null);
 
   const handleOnClick = (filter: string) => {
-    setActiveFilter(prevFilter => prevFilter === filter ? null : filter);
+    const newFilter = activeFilter === filter ? null : filter;
+    setActiveFilter(newFilter);
+    onFilterChange(newFilter);
   }
 
   return (
