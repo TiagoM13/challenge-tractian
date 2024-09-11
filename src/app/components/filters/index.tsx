@@ -1,6 +1,7 @@
 import React from "react";
 import { Companie } from "../../interfaces/companie"
 import { FilterContainer } from "./styled";
+import { Lightning, WarningCircle } from "@phosphor-icons/react";
 
 interface FilterProps {
   companie: Companie | null;
@@ -25,6 +26,7 @@ export const Filters = ({ companie }: FilterProps) => {
           onClick={() => handleOnClick("energia")}
           className={activeFilter === 'energia' ? 'active' : ''}
         >
+          <Lightning size={16} weight="bold" color={activeFilter === 'energia' ? '#fff' : "#2188FF"} />
           Sensor de Energia
         </button>
         <button
@@ -32,6 +34,7 @@ export const Filters = ({ companie }: FilterProps) => {
           onClick={() => handleOnClick('critico')}
           className={activeFilter === 'critico' ? 'active' : ''}
         >
+          <WarningCircle size={16} weight="bold" color={activeFilter === 'critico' ? '#fff' : "#2188FF"} />
           Crítico
         </button>
       </div>

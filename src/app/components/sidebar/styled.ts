@@ -45,4 +45,7 @@ export const Icon = styled.span`
 
 export const Label = styled.span`
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `;

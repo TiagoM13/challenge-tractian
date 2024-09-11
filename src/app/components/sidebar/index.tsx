@@ -6,6 +6,7 @@ import { getIcon } from '../../utils/get-icon';
 import { organizeTree } from '../../utils/organizeTree';
 
 import { Label, SidebarContainer, TreeItem } from './styled';
+import { Circle, Lightning } from '@phosphor-icons/react';
 
 interface SidebarProps {
   locations: Location[];
@@ -36,11 +37,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ locations, assets }) => {
 
               {node.type === 'component' ? (
                 node.sensorType === 'energy' ? (
-                  <span>⚡</span>
+                  <Lightning size={16} color="#52C41A" weight="fill" />
                 ) : node.status !== null ? (
-                  <span>
-                    {node.status === 'operating' ? ' 🟢' : ' 🔴'}
-                  </span>
+                  <>
+                    {node.status === 'operating'
+                      ? <Circle size={14} weight="fill" color='#52C41A' />
+                      : <Circle size={14} weight="fill" color='#ED3833' />
+                    }
+                  </>
                 ) : null
               ) : null}
             </Label>

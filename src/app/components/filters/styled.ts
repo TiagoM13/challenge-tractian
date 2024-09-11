@@ -35,7 +35,11 @@ export const FilterContainer = styled.div<Props>`
       color:  #77818C;
       font-size: 14px;
       font-weight: 600;
-      padding: 6px 16px;
+      padding: 6px 14px;
+
+      display: flex;
+      align-items: center;
+      gap: 8px;
 
       &:hover {
         filter: brightness(0.95);
