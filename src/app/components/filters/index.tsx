@@ -11,7 +11,7 @@ export const Filters = ({ companie }: FilterProps) => {
   const [activeFilter, setActiveFilter] = React.useState<string | null>(null);
 
   const handleOnClick = (filter: string) => {
-    setActiveFilter(filter)
+    setActiveFilter(prevFilter => prevFilter === filter ? null : filter);
   }
 
   return (

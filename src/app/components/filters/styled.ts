@@ -35,7 +35,7 @@ export const FilterContainer = styled.div<Props>`
       color:  #77818C;
       font-size: 14px;
       font-weight: 600;
-      padding: 6px 14px;
+      padding: 10px 16px;
 
       display: flex;
       align-items: center;
