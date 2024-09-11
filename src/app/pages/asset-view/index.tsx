@@ -1,16 +1,16 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { Asset } from "../../interfaces/asset";
-import { Companie } from "../../interfaces/companie";
-import { Location } from "../../interfaces/location";
+import { Asset } from "@/app/interfaces/asset";
+import { Companie } from "@/app/interfaces/companie";
+import { Location } from "@/app/interfaces/location";
 
-import { getAllAssets, getAllCompanies } from "../../services/services";
+import { getAllAssets, getAllCompanies } from "@/app/services/services";
 
-import { DetailsPanel } from "../../components/details-panel";
-import { Header } from "../../components/header";
-import { Sidebar } from "../../components/sidebar";
-import { Filters } from "../../components/filters";
+import { DetailsPanel } from "@/app/components/details-panel";
+import { Header } from "@/app/components/header";
+import { Sidebar } from "@/app/components/sidebar";
+import { Filters } from "@/app/components/filters";
 
 import { Card, Container, Content } from "./styled";
 

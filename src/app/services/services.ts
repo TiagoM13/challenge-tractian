@@ -1,4 +1,4 @@
-import { api } from "../lib/axios"
+import { api } from "@/app/lib/axios"
 
 export const getAllCompanies = async () => {
   const { data } = await api.get("/companies");

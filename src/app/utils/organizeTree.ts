@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Asset } from "../interfaces/asset";
-import { Location } from "../interfaces/location";
+import { Asset } from "@/app/interfaces/asset";
+import { Location } from "@/app/interfaces/location";
 
 export const organizeTree = (locations: Location[], assets: Asset[]) => {
   const tree: Record<string, any> = {};

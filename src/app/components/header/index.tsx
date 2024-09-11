@@ -1,9 +1,9 @@
 import { HeaderContainer, UnitButton, UnitsContainer } from "./styled.ts"
 
-import LogoTractian from '../../../assets/LOGO TRACTIAN.png';
-import IconGold from "../../../assets/gold.png"
+import LogoTractian from '@/assets/LOGO TRACTIAN.png';
+import IconGold from "@/assets/gold.png"
 
-import { Companie } from "../../interfaces/companie.ts";
+import { Companie } from "@/app/interfaces/companie.ts";
 
 interface HeaderProps {
   companies?: Companie[];
