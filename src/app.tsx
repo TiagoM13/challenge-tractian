@@ -1,7 +1,7 @@
-import { Page } from './app/pages'
+import { AssetView } from './app/pages/asset-view'
 
 function App() {
-  return <Page />
+  return <AssetView />
 }
 
 export default App

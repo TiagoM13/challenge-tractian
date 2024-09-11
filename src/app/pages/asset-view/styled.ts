@@ -22,10 +22,8 @@ export const Card = styled.div`
 export const Content = styled.div`
   display: flex;
   gap: 10px;
-  margin-top: 10px;
   flex: 1;
 
-  
   .card-content {
     padding: 0.5rem;
     border: 1px solid #ccc;

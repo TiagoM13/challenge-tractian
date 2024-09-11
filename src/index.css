@@ -17,6 +17,10 @@ html, body {
   line-height: 1.2;
 } 
 
+button {
+  transition: all 0.5s ease-in;
+}
+
 button:hover {
-  filter: brightness(0.9);
+  cursor: pointer;
 }
