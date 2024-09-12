@@ -4,49 +4,48 @@
 
 ![Screenshot](./src/assets/screenshots/Challenge%20TRACTIAN%20-%20Google%20Chrome%2012_09_2024%2011_31_01.png)
 
-### Vídeo de Demonstração
+### Demo Video
 
 ![Screenshot](./src/assets/gif/Challenge-TRACTIAN-Google-Chrome-2024-09-12-11-40-00.gif)
 
-## Funcionalidades Desenvolvidas
-- **Listagem Hierárquica de Locais, Sublocais, Ativos e Componentes:** Estruturei a visualização de forma a mostrar os locais e seus sublocais, permitindo que o usuário tenha uma visão clara dos ativos e seus respectivos componentes.
+## Developed Features
+- **Hierarchical Listing of Locations, Sublocations, Assets and Components:** I structured the visualization to show the locations and their sublocations, allowing the user to have a clear view of the assets and their respective components.
 
-- **Sistema de Filtro:** Criei um sistema de filtro que permite pesquisar por nome de ativos, componentes e locais, mantendo sempre a hierarquia original, o que considero essencial para uma navegação clara.
+- **Filter System:** I created a filter system that allows you to search by asset, component and location name, while always maintaining the original hierarchy, which I consider essential for clear navigation.
 
-- **Sidebar Dinâmica:** A barra lateral oferece uma visão hierárquica completa, onde ativos, subativos, locais e sublocais podem ser navegados de forma rápida e eficiente.
+- **Dynamic Sidebar:** The sidebar offers a complete hierarchical view, where assets, sub-assets, locations and sub-locations can be navigated quickly and efficiently.
 
-## Tecnologias Utilizadas
+## Technologies Used
 #### Frontend:
-- **React:** Utilizei o React por sua capacidade de criar interfaces interativas e escaláveis.
-- **Vite:** Optei por utilizar o Vite como ferramenta de build por sua rapidez e eficiência durante o desenvolvimento. Ele oferece uma experiência de desenvolvimento significativamente mais ágil comparado a outras ferramentas como o Webpack, especialmente em projetos React.
-- **TypeScript:** A tipagem estática me ajudou a evitar diversos erros em tempo de desenvolvimento, além de deixar o código mais legível.
-- **Styled Components:** Para estilização dos componentes, utilizei styled-components para manter o CSS organizado e encapsulado.
-- **React Router DOM:** Implementei o gerenciamento de rotas com React Router para facilitar a navegação entre diferentes seções da aplicação.
-- **Axios:** Utilizei o Axios para realizar as requisições HTTP, pois oferece uma API mais simples e intuitiva para trabalhar com promessas e facilita o tratamento de erros, quando comparado ao fetch.
+- **React:** I used React because of its ability to create interactive and scalable interfaces.
+- **Vite:** I chose to use Vite as a build tool because of its speed and efficiency during development. It offers a significantly more agile development experience compared to other tools such as Webpack, especially in React projects.
+- **TypeScript:** Static typing helped me avoid several errors during development time, in addition to making the code more readable.
+- **Styled Components:** For styling the components, I used styled-components to keep the CSS organized and encapsulated.
+- **React Router DOM:** I implemented route management with React Router to facilitate navigation between different sections of the application.
+- **Axios:** I used Axios to make HTTP requests, as it offers a simpler and more intuitive API for working with promises and makes error handling easier, when compared to fetch.
 
 #### Backend
-A API utilizada foi disponibilizada pela empresa para acessar os dados de empresas, locais e ativos. Ela funciona apenas para requisições do tipo GET, com os seguintes endpoints:
+The API used was made available by the company to access company, location and asset data. It only works for GET type requests, with the following endpoints:
 
-1. **/companies:** Retorna todas as empresas cadastradas.
-2. **/companies/:companieId/locations:** Retorna todos os locais associados a uma empresa específica.
-3. **/companies/:companieId/assets:** Retorna todos os ativos de uma empresa específica.
+1. **/companies:** Returns all registered companies.
+2. **/companies/:companieId/locations:** Returns all locations associated with a specific company.
+3. **/companies/:companieId/assets:** Returns all assets of a specific company.
 
 **API Base URL:** https://fake-api.tractian.com
 
-### Melhorias Propostas
+### Proposed Improvements
 
-#### 1. Implementação de Testes Automatizados:
-- **Motivação:** Durante o desenvolvimento, a ausência de testes foi uma limitação. Acredito que adicionar testes automatizados (unitários e de integração) seria crucial para garantir a robustez do sistema, especialmente em futuras evoluções.
-- **Próximo Passo:** Utilizar Jest e React Testing Library para cobrir as principais funcionalidades, garantindo que a busca, a listagem hierárquica e a renderização dos componentes estejam corretas.
-#### 2. Gerenciamento de Estado com Zustand:
-- **Motivação:** O estado atualmente está sendo gerenciado com hooks nativos do React. Embora funcione, ao lidar com dados de múltiplas empresas e suas hierarquias, uma solução como Zustand poderia proporcionar uma melhor organização e performance.
-- **Próximo Passo:** Integrar o Zustand para gerenciar o estado global da aplicação, especialmente para otimizar o controle de filtros e a persistência de dados de empresas, locais e ativos.
-#### 3. Otimização do Sistema de Filtro:
-- **Motivação:** O sistema de filtro funciona corretamente, mas pode ser otimizado para aplicar filtros mais complexos (por exemplo, por status operacional, categoria de ativos e localização).
-- **Próximo Passo:** Criar uma interface de filtro avançado onde o usuário possa selecionar múltiplos critérios, melhorando a usabilidade.
-#### 4. Otimização de Performance:
-- **Motivação:** Em grandes conjuntos de dados, a performance pode ser um problema. Ferramentas como React.memo e lazy loading poderiam ser aplicadas para melhorar a fluidez da interface.
-- **Próximo Passo:** Implementar memoização em componentes pesados e otimizar o carregamento de dados com caching e lazy loading de componentes quando necessário.
-#### 5. Design Responsivo e Acessibilidade:
-- **Motivação:** Embora o design esteja adaptado para telas grandes, dispositivos móveis podem oferecer uma experiência limitada.
-- **Próximo Passo:** Melhorar o design responsivo, garantindo que a aplicação seja totalmente acessível e utilizável em smartphones e tablets.
+#### 1. Implementation of Automated Tests:
+- **Motivation:** During development, the lack of tests was a limitation. I believe that adding automated tests (unit and integration) would be crucial to ensure the robustness of the system, especially in future evolutions.
+- **Next Step:** Use Jest and React Testing Library to cover the main functionalities, ensuring that the search, hierarchical listing and rendering of the components are correct.
+#### 2. State Management with Zustand:
+- **Motivation:** The state is currently being managed with native React hooks. Although it works, when dealing with data from multiple companies and their hierarchies, a solution like Zustand could provide better organization and performance.
+- **Next Step:** Integrate Zustand to manage the global state of the application, especially to optimize filter control and persistence of company, location and asset data. #### 3. Filter System Optimization:
+- **Motivation:** The filter system works correctly, but could be optimized to apply more complex filters (e.g. by operational status, asset category, and location).
+- **Next Step:** Create an advanced filter interface where the user can select multiple criteria, improving usability.
+#### 4. Performance Optimization:
+- **Motivation:** In large data sets, performance can be an issue. Tools like React.memo and lazy loading could be applied to improve the fluidity of the interface.
+- **Next Step:** Implement memoization in heavy components and optimize data loading with caching and lazy loading of components when necessary.
+#### 5. Responsive Design and Accessibility:
+- **Motivation:** Although the design is adapted for large screens, mobile devices may offer a limited experience.
+- **Next Step:** Improve responsive design, ensuring that the application is fully accessible and usable on smartphones and tablets.
