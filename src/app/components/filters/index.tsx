@@ -1,7 +1,9 @@
 import React from "react";
-import { Companie } from "../../interfaces/companie"
-import { FilterContainer } from "./styled";
 import { Lightning, WarningCircle } from "@phosphor-icons/react";
+
+import { Companie } from "@/app/interfaces/companie"
+
+import { FilterContainer } from "./styled";
 
 interface FilterProps {
   companie: Companie | null;

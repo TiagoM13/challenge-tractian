@@ -1,6 +1,6 @@
-import IconLocation from "../../assets/location.png"
-import IconComponent from "../../assets/component.png"
-import IconAsset from "../../assets/asset.png"
+import IconLocation from "@/assets/location.png"
+import IconComponent from "@/assets/component.png"
+import IconAsset from "@/assets/asset.png"
 
 export const getIcon = (type: string) => {
   switch (type) {

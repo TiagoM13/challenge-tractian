@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Circle, Lightning } from '@phosphor-icons/react';
 
+import { Asset } from '@/app/interfaces/asset';
+import { Location } from '@/app/interfaces/location';
+import { getIcon } from '@/app/utils/get-icon';
+import { organizeTree } from '@/app/utils/organizeTree';
+
 import { SearchInput } from '../search';
-import { Asset } from '../../interfaces/asset';
-import { Location } from '../../interfaces/location';
-import { getIcon } from '../../utils/get-icon';
-import { organizeTree } from '../../utils/organizeTree';
 
 import { Label, SidebarContainer, TreeItem } from './styled';
 
