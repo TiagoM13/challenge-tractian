@@ -5,7 +5,7 @@ import { Asset } from "@/app/interfaces/asset";
 import { Companie } from "@/app/interfaces/companie";
 import { Location } from "@/app/interfaces/location";
 
-import { getAllAssets, getAllCompanies } from "@/app/services/services";
+import { getAllAssets, getAllCompanies, getAllLocations } from "@/app/services/services";
 
 import { DetailsPanel } from "@/app/components/details-panel";
 import { Header } from "@/app/components/header";
@@ -89,11 +89,13 @@ export const AssetView = () => {
   }, [activeFilter, getRelevantLocations, originalAssets, originalLocations]);
 
   const handleGetAssetSelected = useCallback(async (id: string) => {
-    const response = await getAllAssets(id);
-    setAssets(response.assets);
-    setLocations(response.locations);
-    setOriginalAssets(response.assets);
-    setOriginalLocations(response.locations);
+    const assets = await getAllAssets(id);
+    const locations = await getAllLocations(id)
+
+    setAssets(assets);
+    setLocations(locations);
+    setOriginalAssets(assets);
+    setOriginalLocations(locations);
   }, []);
 
   const handleCompanieChange = useCallback((companie: Companie) => {
@@ -113,18 +115,11 @@ export const AssetView = () => {
 
       if (response.length > 0) {
         if (companieId) {
-          const selected = response.find((companie: Companie) => companie.id === companieId);
+          const selected = response.find((companie) => companie.id === companieId);
           if (selected) {
             setSelectedCompanie(selected);
             handleGetAssetSelected(selected.id);
           }
-        } else {
-          const firstCompanie = response[0];
-          setSelectedCompanie(firstCompanie);
-          handleGetAssetSelected(firstCompanie.id);
-
-          searchParams.set("companie", firstCompanie.id);
-          navigate({ search: searchParams.toString() });
         }
       }
     })();
